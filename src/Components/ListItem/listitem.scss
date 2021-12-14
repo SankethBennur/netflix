@@ -1,0 +1,44 @@
+.listItem{
+     width: 255px;
+     height: 120px;
+     background-color: var(--main-color);
+     margin-right: 5px;
+     overflow: hidden;
+     cursor: pointer;
+     color: white;
+
+     img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+     }
+
+     .description{
+          font-weight: 300;
+     }
+
+     &:hover{  // card properties on hover
+          position: relative;
+          // top: -150px;
+          
+          width: 500px;
+          height: 380px;
+          
+          
+          -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
+          box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
+          
+          img{  // image in the card, props on hover
+               height: 250px;
+               object-fit: cover;
+          }
+
+          video{  // video in card, props on hover
+               top: 0px;
+               width: 100%;
+               height: 250px;
+               object-fit: cover;
+               position: absolute;
+          }
+     }
+}
