@@ -15,30 +15,35 @@ export default function ListItem({index}) {
 
                <img src="https://2l7g9kgsh281akevs49v281d-wpengine.netdna-ssl.com/wp-content/uploads/2017/02/john-wick-2-guns.jpg" alt="" />
 
-               <div className="titleOptions">
-
-                    <div className="icons">
-                         <PlayArrow />
-                         <Add />
-                         <ThumbUpAltOutlined />
-                         <ThumbDownAltOutlined />
+               {isHovered && (
+                    <>
+                    <div className="titleOptions">
+     
+                         <div className="icons">
+                              <PlayArrow />
+                              <Add />
+                              <ThumbUpAltOutlined />
+                              <ThumbDownAltOutlined />
+                         </div>
+     
+                         <div className="itemDetails">
+                              <span>120 mins</span>
+                              <span className="ageLimit">+16</span>
+                              <span>2019</span>
+                         </div>
+     
+                         <div className="description">
+                              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, doloribus deleniti minima impedit nostrum tempora voluptatem mollitia!
+                         </div>
+     
+                         <div className="genre">Action</div>
+     
                     </div>
-
-                    <div className="itemDetails">
-                         <span>120 mins</span>
-                         <span className="ageLimit">+16</span>
-                         <span>2019</span>
-                    </div>
-
-                    <div className="description">
-                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, doloribus deleniti minima impedit nostrum tempora voluptatem mollitia!
-                    </div>
-
-                    <div className="genre">Action</div>
-
-               </div>
-               <video src={trailer} autoPlay={true} loop />
+                    
+                    <video src={trailer} autoPlay={true} loop />
+                    </>
+               )};
 
           </div>
-     )
+     );
 }

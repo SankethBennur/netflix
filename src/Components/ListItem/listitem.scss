@@ -21,9 +21,9 @@
           position: relative;
           // top: -150px;
           
-          width: 500px;
-          height: 380px;
-          
+          width: 520px;
+          height: 400px;
+          border-radius: 8px;
           
           -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
           box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
@@ -39,6 +39,44 @@
                height: 250px;
                object-fit: cover;
                position: absolute;
+          }
+
+          .titleOptions{
+               display: flex;
+               flex-direction: column;
+               padding: 5px;
+               display: flex;
+               margin-bottom: 10px;
+
+               .icons{
+                    padding: 5px;
+                    border-radius: 50%;
+               }
+
+               .itemDetails {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: gray;
+            
+                    .ageLimit {
+                      border: 1px solid gray;
+                      padding: 1px 3px;
+                      margin: 0 10px;
+                    }
+               }
+            
+               .description {
+               font-size: 13px;
+               margin-bottom: 10px;
+               }
+          
+               .genre {
+               font-size: 14px;
+               color: lightgray;
+               }
           }
      }
 }
