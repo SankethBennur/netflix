@@ -1,5 +1,6 @@
 import { ArrowDropDown, Notifications, Search } from "@material-ui/icons";
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 import "./navbar.scss";
 
 function Navbar() {
@@ -20,11 +21,25 @@ function Navbar() {
                     <div className="left">
                          <img src="https://pngimg.com/uploads/netflix/netflix_PNG8.png" alt="" />
 
+                    <Link to="/" className="linkTag">
                     <span>Home</span>
+                    </Link>
+
+                    <Link to="/movies" className="linkTag">
                     <span>Movies</span>
+                    </Link>
+
+                    <Link to="/series" className="linkTag">
                     <span>TV Shows</span>
+                    </Link>
+
+                    <Link className="linkTag">
                     <span>Trending</span>
+                    </Link>
+
+                    <Link className="linkTag">
                     <span>My List</span>
+                    </Link>
 
                     </div>
 

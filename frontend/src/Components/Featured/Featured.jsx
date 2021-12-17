@@ -1,7 +1,30 @@
 import { InfoOutlined, PlayArrow } from "@material-ui/icons"
 import "./featured.scss"
+import axios from "../../axios.js";
+import { useEffect, useState } from "react";
 
 export default function Featured({type}) {
+     const [content, setContent] = useState({});
+
+     useEffect(() => {
+          async function getRandomContent(){
+               try {
+                    const res = await axios.get(`/movie/random?type=${type}`, {
+                         headers: {
+                              token:
+                                   // "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+                                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmFmZDdlZWI3MjdmYTI1MGFmMDg5MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTY2OTc1NSwiZXhwIjoxNjQwMTAxNzU1fQ.I4cz2h3EUQAPo1-cOiK2WdoYi3jcPnFW2XcB5FTfA28"
+                         },
+                    });
+                    setContent(res.data[0]);
+               }
+               catch(err){
+                    console.log(err);
+               }
+          };
+          getRandomContent();
+     }, [type]);
+
      return (
           <div className="featured">
                {type && (
@@ -24,14 +47,14 @@ export default function Featured({type}) {
                )}
 
                {/* Title Cover Image */}
-               <img width="100%" src="https://cdn.lifestyleasia.com/wp-content/uploads/sites/2/2021/10/11175620/squid-game-merch-netflix-hero-1600x900.jpg" alt="" />
+               <img width="100%" src={content.img} alt="" />
                
                {/* Logo and Description */}
                <div className="info">
-                    <img src="https://logosarchive.com/wp-content/uploads/2021/10/Squid-Game-logo.png" alt="" />
+                    <img src={content.imgTitle} alt="" />
 
                     <span className="desc">
-                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat sit magnam iure cumque natus quae cupiditate molestias accusamus alias tempora. Laboriosam possimus numquam ullam omnis aliquam perferendis delectus, accusantium reprehenderit.
+                    Hundreds of cash-strapped contestants accept an invitation to compete in children's games for a tempting prize, but the stakes are deadly.
                     </span>
 
                     <div className="buttons">
