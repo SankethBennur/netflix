@@ -5,47 +5,38 @@ import Login from "./Pages/Login/Login";
 import Watch from "./Pages/Watch/Watch";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { useContext } from "react";
-// import { AuthContext } from "./authContext/AuthContext";
+import { AuthContext } from "./authContext/AuthContext";
 
 
 const App = () => {
   // before going to Home, Movies or TV Shows page, verify if user exists.
   // if user is not logged in, false or does not exist, go to register/login page.
   
-  const user = true;
+  const { user } = useContext(AuthContext);
 
   return(
     <div>
+      {/* Primarily, App.js only contains all possible Routes of the Web */}
       <Router>
         <Switch>
           
-          <Route exact path="/">
-            {user ? <Home /> : <Redirect to="/register" />}
-            {/* <Home /> */}
-          </Route>
+          <Route path="/register"> {!user ? <Register /> : <Redirect to="/" />} </Route>
+          
+          <Route path="/login"> {!user ? <Login /> : <Redirect to="/" />} </Route>
+          
+          {/* Movies and TV Shows pages are pretty much like Home Page. */}
+          {/* They are just like a filtered version of the Home Page. */}
+          <Route exact path="/"> {user ? <Home /> : <Redirect to="/register" />} </Route>
 
-          <Route path="/register">
-            {!user ? <Register /> : <Redirect to="/" />}
-            {/* <Register /> */}
-          </Route>
-          
-          <Route path="/login">
-            {!user ? <Login /> : <Redirect to="/" />}
-            <Login />
-          </Route>
-          
-          {user && (   // similar to if(user){}
+          {user && (  // like a pipelining of code
             <div>
-              <Route path="/movies">
-                <Home type="movies" />
-              </Route>
+              {/* Routes must not be confused with Link */}
+              {/* They show all possible routes in the whole web application */}
+              <Route path="/movies"> <Home type="movies" /> </Route>
               
-              <Route path="/series">
-                <Home type="series" />
-              </Route>
-              <Route path="/watch">
-                <Watch />
-              </Route>
+              <Route path="/series"> <Home type="series" /> </Route>
+              
+              <Route path="/watch"> <Watch /> </Route>
             </div>
           )}
 

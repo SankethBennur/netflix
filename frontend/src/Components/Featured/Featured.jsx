@@ -2,8 +2,9 @@ import { InfoOutlined, PlayArrow } from "@material-ui/icons"
 import "./featured.scss"
 import axios from "../../axios.js";
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
-export default function Featured({type}) {
+export default function Featured({type, setGenre}) {
      const [content, setContent] = useState({});
 
      useEffect(() => {
@@ -24,18 +25,19 @@ export default function Featured({type}) {
           };
           getRandomContent();
      }, [type]);
-
+     
+     console.log(content);
      return (
           <div className="featured">
                {type && (
                     <div className="category">
                          <span> {type === "movies" ? "Movies" : "TV Shows"} </span>
-                         <select name="genre" id="genre">
+                         <select name="genre" id="genre" onChange={(e)=>setGenre(e.target.value)}>
                               <option>Genre</option>
                               <option value="action">Action</option>
-                              <option value="adventure">Adventure</option>
+                              <option value="fantasy">Fantasy</option>
                               <option value="drama">Drama</option>
-                              <option value="crime">Crime</option>
+                              <option value="comedy">Comedy</option>
                               <option value="horror">Horror</option>
                               <option value="romance">Romance</option>
                               <option value="scifi">Sci-fi</option>
@@ -53,19 +55,21 @@ export default function Featured({type}) {
                <div className="info">
                     <img src={content.imgTitle} alt="" />
 
-                    <span className="desc">
-                    Hundreds of cash-strapped contestants accept an invitation to compete in children's games for a tempting prize, but the stakes are deadly.
+                    <span className="desc">{content.desc}
                     </span>
 
                     <div className="buttons">
-                         <button className="play">
-                              <PlayArrow />
-                              <span>Play</span>
-                         </button>
-                         <button className="moreInfo">
-                              <InfoOutlined />
-                              <span>More Info</span>
-                         </button>
+                         <Link to={{pathname:"/watch", movie: content}} className="linkTag" >
+                         {/* <Link> */}
+                              <button className="play">
+                                   <PlayArrow />
+                                   <span>Play</span>
+                              </button>
+                         </Link>
+                              <button className="moreInfo">
+                                   <InfoOutlined />
+                                   <span>More Info</span>
+                              </button>
                     </div>
                </div>
           </div>

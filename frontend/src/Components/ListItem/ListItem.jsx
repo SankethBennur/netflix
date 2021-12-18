@@ -1,8 +1,6 @@
 import { Add, PlayArrow, ThumbDownAltOutlined, ThumbUpAltOutlined } from "@material-ui/icons"
 import "./listitem.scss"
 import { useState, useEffect } from 'react'
- 
-//not required
 import axios from "../../axios.js"
 import { Link } from "react-router-dom";
 
@@ -43,6 +41,7 @@ export default function ListItem({index, item}) {  // the list items fetched are
                     {isHovered && (
                          <>
                          <div className="titleOptions">
+                              <div className="genre">{movie.title}</div>
           
                               <div className="icons">
                                    <PlayArrow />
@@ -61,7 +60,6 @@ export default function ListItem({index, item}) {  // the list items fetched are
                                    {movie.desc}
                               </div>
           
-                              <div className="genre">Action</div>
           
                          </div>
                          

@@ -5,16 +5,16 @@ import "./home.scss";
 import { useState, useEffect } from "react";
 import axios from '../../axios.js';
 
-function Home({type}) {
+function Home({type}) {   // Home is being 'filtered' with type property and also being used for Movies and TV Shows page
+
      const [lists, setLists] = useState([]);
      const [genre, setGenre] = useState(null);
      
-     useEffect(() => {
+     useEffect(() => {   // when landing on Home page, verify the query in the URL
           async function getRandomLists(){
                try {
                     const res = await axios.get(
-                         `list${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""
-                         }`,
+                         `list${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`,
                          {
                               headers: {   // fetch header from HTTP Request message packet
                                    token:
@@ -23,7 +23,7 @@ function Home({type}) {
                               },
                          }
                     );
-                    console.log(res.data)
+                    // console.log(res.data)
                     setLists(res.data);
                } catch (err) {
                     console.log(err);
@@ -38,7 +38,7 @@ function Home({type}) {
                <Navbar />
 
                {/* Body */}
-               <Featured type={type} />
+               <Featured type={type} setGenre={setGenre} />  {/* No need to call useEffect Hook, we can set Featured based on selected 'type' */}
 
                {lists.map((listObj) => (
                     <Lists list={listObj} />

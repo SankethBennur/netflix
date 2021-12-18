@@ -13,8 +13,8 @@ router.post("/register", async function(req, res){  // asynchronously execute in
      if(user) return res.status(400).json({ message: "User already exists." });
 
      const newUser = new User({
-          username: req.body.username,
           email: req.body.email,
+          username: req.body.username,
           password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString()
      });
 
