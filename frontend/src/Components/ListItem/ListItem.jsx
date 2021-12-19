@@ -12,11 +12,12 @@ export default function ListItem({index, item}) {  // the list items fetched are
           async function getMovie(){
                try {
                     const res = await axios.get("/movie/find/" + item, {
-                         headers: {
-                              token:
-                                   // "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-                                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmFmZDdlZWI3MjdmYTI1MGFmMDg5MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTY2OTc1NSwiZXhwIjoxNjQwMTAxNzU1fQ.I4cz2h3EUQAPo1-cOiK2WdoYi3jcPnFW2XcB5FTfA28"
-                         },
+                         // headers: {
+                         //      token:
+                         //           // ""
+                         //           "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+                         //           // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmFmZDdlZWI3MjdmYTI1MGFmMDg5MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTY2OTc1NSwiZXhwIjoxNjQwMTAxNzU1fQ.I4cz2h3EUQAPo1-cOiK2WdoYi3jcPnFW2XcB5FTfA28"
+                         // },
                     });
                     setMovie(res.data);
                } catch (err) {
@@ -26,7 +27,7 @@ export default function ListItem({index, item}) {  // the list items fetched are
           getMovie();
      }, [item]);
 
-     const trailer = "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
+     const trailer = "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761"
 
      
      return (
@@ -65,7 +66,7 @@ export default function ListItem({index, item}) {  // the list items fetched are
                          
                          <video src={movie.trailer} autoPlay={true} loop />
                          </>
-                    )};
+                    )}
 
                </div>
           </Link>

@@ -23,7 +23,8 @@ router.post("/", verify, async function(req, res){
 
 
 //DELETE
-router.delete("/:id", verify, async function(req, res){
+// router.delete("/:id", verify, async function(req, res){
+router.delete("/:id", async function(req, res){
      if (req.user.isAdmin) {
           try {
                await List.findByIdAndDelete(req.params.id);
@@ -38,7 +39,8 @@ router.delete("/:id", verify, async function(req, res){
 
 
 //GET
-router.get("/", verify, async function(req, res){   // Here is the aggregation!
+// router.get("/", verify, async function(req, res){   // Here is the aggregation!
+router.get("/", async function(req, res){   // Here is the aggregation!
      const typeQuery = req.query.type;   // Type is series or movies
      const genreQuery = req.query.genre;   // Type and Genre from List schema properties.
      let list = [];

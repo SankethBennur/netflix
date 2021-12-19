@@ -12,15 +12,16 @@ function Home({user, type}) {   // Home is being 'filtered' with type property a
      
      useEffect(() => {   // when landing on Home page, verify the query in the URL
           async function getRandomLists(){
-               try {
+               try {   // Aggregate Items
                     const res = await axios.get(
                          `list${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`,
                          {
-                              headers: {   // fetch header from HTTP Request message packet
-                                   token: 
-                                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmFmZDdlZWI3MjdmYTI1MGFmMDg5MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTcyMDM3MywiZXhwIjoxNjQwMTUyMzczfQ.VpNNF2Dis7Ce0i45s-zqAYWgabBNzPHJzc9jEifGljI"
-                                        // "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-                              },
+                              // headers: {   // fetch header from HTTP Request message packet
+                              //      token:
+                              //           ""
+                              //           // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmFmZDdlZWI3MjdmYTI1MGFmMDg5MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTcyMDM3MywiZXhwIjoxNjQwMTUyMzczfQ.VpNNF2Dis7Ce0i45s-zqAYWgabBNzPHJzc9jEifGljI"
+                              //           // "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+                              // },
                          }
                     );
                     // console.log(res.data)

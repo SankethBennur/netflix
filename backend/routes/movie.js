@@ -61,7 +61,8 @@ router.delete("/:id", verify, async (req, res) => {
 
 
 // GET
-router.get("/find/:id", verify, async (req, res) => {  // we may have to verify a user to even get a title
+// router.get("/find/:id", verify, async (req, res) => {  // we may have to verify a user to even get a title
+router.get("/find/:id", async (req, res) => {  // we may have to verify a user to even get a title
      try {
           const movie = await Movie.findById(req.params.id);
           res.status(200).json(movie);
@@ -70,8 +71,32 @@ router.get("/find/:id", verify, async (req, res) => {  // we may have to verify 
      }
 });
 
+// ADMIN
+router.get("/all", async (req, res) => {  // we may have to verify a user to even get a title
+     let type = (req.query.type === 'series')? true: false;
+     let movie;
+     try {
+          // const movie = await Movie.find();
+          movie = await Movie.aggregate([  // aggregate and find movies of sample size 1 (one movie title only)
+               { $match: {
+                    genre: req.query.genre,
+                    isSeries: type
+               } },
+               { $sample: { size: 10 } },
+          ]);
+          let num = 5
+          res.status(200).json(movie);
+          // console.log(req.query.genre);
+          
+
+     } catch (err) {
+          res.status(500).json(err);
+     }
+});
+
 
 // GET RANDOM
+// FEATURED
 // router.get("/random", verify, async (req, res) => {
 router.get("/random", async (req, res) => {
      const type = req.query.type;
@@ -90,6 +115,7 @@ router.get("/random", async (req, res) => {
                ]);
           }
           res.status(200).json(movie);
+          // console.log(movie)
      }
      catch(err){
           res.status(500).json(err);

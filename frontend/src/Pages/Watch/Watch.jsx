@@ -6,7 +6,6 @@ import "./watch.scss";
 export default function Watch() {
      const location = useLocation();   // Further Reading on useLocation
      const movie = location.movie;
-     // console.log(location)
 
      return (
      <div className="watch">

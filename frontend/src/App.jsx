@@ -38,6 +38,7 @@ const App = () => {
             <Route path="/series"> <Home type="series" />
             </Route>
             
+            {/* // if user is authenticated only then proceed to watch */}
             <Route path="/watch"> 
             {!user ? <Register /> : <Watch />}
             </Route>
