@@ -12,9 +12,9 @@ export default function Featured({type, setGenre}) {
                try {
                     const res = await axios.get(`/movie/random?type=${type}`, {
                          headers: {
-                              token:
+                              token: ""
                                    // "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-                                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmFmZDdlZWI3MjdmYTI1MGFmMDg5MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTY2OTc1NSwiZXhwIjoxNjQwMTAxNzU1fQ.I4cz2h3EUQAPo1-cOiK2WdoYi3jcPnFW2XcB5FTfA28"
+                                   // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmFmZDdlZWI3MjdmYTI1MGFmMDg5MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTY2OTc1NSwiZXhwIjoxNjQwMTAxNzU1fQ.I4cz2h3EUQAPo1-cOiK2WdoYi3jcPnFW2XcB5FTfA28"
                          },
                     });
                     setContent(res.data[0]);
@@ -26,7 +26,7 @@ export default function Featured({type, setGenre}) {
           getRandomContent();
      }, [type]);
      
-     console.log(content);
+
      return (
           <div className="featured">
                {type && (
@@ -36,14 +36,9 @@ export default function Featured({type, setGenre}) {
                               <option>Genre</option>
                               <option value="action">Action</option>
                               <option value="fantasy">Fantasy</option>
-                              <option value="drama">Drama</option>
                               <option value="comedy">Comedy</option>
                               <option value="horror">Horror</option>
-                              <option value="romance">Romance</option>
-                              <option value="scifi">Sci-fi</option>
                               <option value="thriller">Thriller</option>
-                              <option value="animation">Animation</option>
-                              <option value="documentaries">Documentaries</option>
                          </select>
                     </div>
                )}

@@ -5,7 +5,7 @@ import "./home.scss";
 import { useState, useEffect } from "react";
 import axios from '../../axios.js';
 
-function Home({type}) {   // Home is being 'filtered' with type property and also being used for Movies and TV Shows page
+function Home({user, type}) {   // Home is being 'filtered' with type property and also being used for Movies and TV Shows page
 
      const [lists, setLists] = useState([]);
      const [genre, setGenre] = useState(null);
@@ -17,7 +17,7 @@ function Home({type}) {   // Home is being 'filtered' with type property and als
                          `list${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`,
                          {
                               headers: {   // fetch header from HTTP Request message packet
-                                   token:
+                                   token: 
                                         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmFmZDdlZWI3MjdmYTI1MGFmMDg5MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTcyMDM3MywiZXhwIjoxNjQwMTUyMzczfQ.VpNNF2Dis7Ce0i45s-zqAYWgabBNzPHJzc9jEifGljI"
                                         // "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
                               },
@@ -31,11 +31,13 @@ function Home({type}) {   // Home is being 'filtered' with type property and als
           };
           getRandomLists();
      }, [type, genre]);
+
+     // console.log(user);
      
      return (
           <div className="home">
                {/* Header */}
-               <Navbar />
+               <Navbar user={user}/>  {/* Pass Property user to allow guest into home page */}
 
                {/* Body */}
                <Featured type={type} setGenre={setGenre} />  {/* No need to call useEffect Hook, we can set Featured based on selected 'type' */}

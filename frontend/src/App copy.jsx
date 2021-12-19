@@ -27,15 +27,17 @@ const App = () => {
           {/* Movies and TV Shows pages are pretty much like Home Page. */}
           {/* They are just like a filtered version of the Home Page. */}
           {/* <Route exact path="/"> {user ? <Home /> : <Redirect to="/register" />} </Route> */}
-          <Route exact path="/"> <Home user={user}/> </Route>
+          <Route exact path="/"> <Home /> </Route>
 
           <div>
             {/* Routes must not be confused with Link */}
             {/* They show all possible routes in the whole web application */}
-            <Route path="/movies"> <Home type="movies" />
+            <Route path="/movies">
+            {!user ? <Register /> : <Home type="movies" />}
             </Route>
             
-            <Route path="/series"> <Home type="series" />
+            <Route path="/series"> 
+            {!user ? <Register /> : <Home type="series" />}
             </Route>
             
             <Route path="/watch"> 
