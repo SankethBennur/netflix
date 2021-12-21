@@ -25,6 +25,7 @@ export default function Register() {
       }, config);
       
     } catch (err) {}
+    // alert({ data });
     history.push("/login");
   };
   
