@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRef } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import "./register.scss";
 
 export default function Register() {
@@ -32,10 +33,15 @@ export default function Register() {
         <div className="wrapper">
           <img
             className="logo"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+            // src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+            src="https://www.freepnglogos.com/uploads/red-logo-png-16.png"
             alt=""
           />
-          <button className="loginButton">Sign In</button>
+          <HashLink to="/login">
+            <button className="loginButton">
+              Sign In
+            </button>
+          </HashLink>
         </div>
       </div>
       <div className="container">

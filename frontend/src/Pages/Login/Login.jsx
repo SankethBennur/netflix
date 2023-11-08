@@ -18,7 +18,8 @@ export default function Login() {
         <div className="wrapper">
           <img
             className="logo"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+            // src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+            src="https://www.freepnglogos.com/uploads/red-logo-png-16.png"
             alt=""
           />
         </div>
@@ -40,7 +41,7 @@ export default function Login() {
             Sign In
           </button>
           <span>
-            New to Nutfix? <b>Sign up now.</b>
+            New to Netflix? <b>Sign up now.</b>
           </span>
           <small>
             This page is protected by Google reCAPTCHA to ensure you're not a
