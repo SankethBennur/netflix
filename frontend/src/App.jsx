@@ -24,19 +24,20 @@ const App = () => {
           {!user ? <Register /> : <Redirect to="/" />}
         </Route>
         <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
-        {user && (
-          <>
-            <Route path="/movies">
-              <Home type="movie" />
-            </Route>
-            <Route path="/series">
-              <Home type="series" />
-            </Route>
-            <Route path="/watch">
-              <Watch />
-            </Route>
-          </>
-        )}
+        {(user)
+            ? <>
+                <Route path="/movies">
+                  <Home type="movies" />
+                </Route>
+                <Route path="/series">
+                  <Home type="series" />
+                </Route>
+                <Route path="/watch">
+                  <Watch />
+                </Route>
+              </>
+            : <Redirect to="/" />
+        }
       </Switch>
     </Router>
   );
