@@ -7,6 +7,11 @@ const userRoute = require("./routes/users");
 const movieRoute = require("./routes/movies");
 const listRoute = require("./routes/lists");
 
+const functions = require("firebase-functions");
+
+// const admin = require('firebase-admin');
+// admin.initializeApp();
+
 dotenv.config();
 
 mongoose
@@ -30,6 +35,8 @@ app.use("/api/users", userRoute);
 app.use("/api/movies", movieRoute);
 app.use("/api/lists", listRoute);
 
-app.listen(8800, () => {
+app.listen(5000, () => {
   console.log("Backend server is running!");
 });
+
+exports.api = functions.https.onRequest(app);
