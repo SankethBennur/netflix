@@ -1,6 +1,4 @@
-// Works very much like redux
-
-const AuthReducer = (state, action) => {  // switch case for states of a LOGIN status
+const AuthReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN_START":
       return {
