@@ -22,8 +22,18 @@ export default function Register() {
     e.preventDefault();
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
+
+    const reqBody_ = {
+      email: email,
+      username: usernameRef.current.value,
+      password: passwordRef.current.value,
+    };
+
     try {
-      await axios.post("auth/register", { email,username, password });
+      await axios.post(
+        "auth/register",
+        reqBody_
+      );
       history.push("/login");
     } catch (err) {}
   };
