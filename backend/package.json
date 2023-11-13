@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "nodemon index.js",
-    "deploy": "firebase deploy --only functions:api"
+    "deploy": "firebase deploy --only functions"
   },
   "keywords": [],
   "author": "",

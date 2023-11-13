@@ -9,8 +9,8 @@ const listRoute = require("./routes/lists");
 
 const functions = require("firebase-functions");
 
-// const admin = require('firebase-admin');
-// admin.initializeApp();
+const admin = require('firebase-admin');
+admin.initializeApp();
 
 dotenv.config();
 
