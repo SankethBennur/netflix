@@ -31,7 +31,7 @@ export default function Register() {
 
     try {
       await axios.post(
-        "auth/register",
+        "https://us-central1-nf-clone-server-app.cloudfunctions.net/api/api/auth/register",
         reqBody_
       );
       history.push("/login");

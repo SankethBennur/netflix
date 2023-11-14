@@ -4,7 +4,7 @@ import Register from "./pages/register/Register";
 import Watch from "./pages/watch/Watch";
 import Login from "./pages/login/Login";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route,
   Redirect,
@@ -15,10 +15,10 @@ import { AuthContext } from "./authContext/AuthContext";
 const App = () => {
   const { user } = useContext(AuthContext);
   return (
-    <Router>
+    <BrowserRouter basename="/">
       <Switch>
         <Route exact path="/">
-          {user ? <Home /> : <Redirect to="/register" />}
+          {user ? <Home type="" /> : <Redirect to="/register" />}
         </Route>
         <Route path="/register">
           {!user ? <Register /> : <Redirect to="/" />}
@@ -39,7 +39,7 @@ const App = () => {
             : <Redirect to="/" />
         }
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 };
 
