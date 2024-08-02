@@ -1,124 +1,81 @@
-import axios from "../../axios.js";
-import { useState, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
+import { useRef } from "react";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import "./register.scss";
 
-
 export default function Register() {
-  // // useState Hooks for Email and Password Setters 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const history = useHistory();
-  
-  async function handleRegister(e){
-    e.preventDefault();
-    
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        }
-      };
-      const { data } = await axios.post("auth/register", {
-        email, username, password
-      }, config);
-      
-    } catch (err) {}
-    // alert({ data });
-    history.push("/login");
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const usernameRef = useRef();
+
+  const handleStart = () => {
+    setEmail(emailRef.current.value);
   };
-  
-  
+  const handleFinish = async (e) => {
+    e.preventDefault();
+    setPassword(passwordRef.current.value);
+    setUsername(usernameRef.current.value);
+
+    const reqBody_ = {
+      email: email,
+      username: usernameRef.current.value,
+      password: passwordRef.current.value,
+    };
+
+    try {
+      await axios.post(
+        "https://us-central1-nf-clone-server-app.cloudfunctions.net/api/api/auth/register",
+        reqBody_
+      );
+      history.push("/login");
+    } catch (err) {}
+  };
   return (
     <div className="register">
       <div className="top">
         <div className="wrapper">
           <img
             className="logo"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+            // src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+            src="https://www.freepnglogos.com/uploads/red-logo-png-16.png"
             alt=""
           />
-
-<Link to="/login" >
-            <button className="loginButton">Sign In</button>
-        </Link>
-          
+          <HashLink to="/login">
+            <button className="loginButton">
+              Sign In
+            </button>
+          </HashLink>
         </div>
       </div>
-      
       <div className="container">
-        
         <h1>Unlimited movies, TV shows, and more.</h1>
-        
         <h2>Watch anywhere. Cancel anytime.</h2>
-        
-        <p>Ready to watch? Enter your email to create or restart your membership.</p>
-        
-        {/* SUPER IMPORTANT */}
-        {/* handleEmail will set email with String Object fetched from emailRef, making it not null */}
-        {/* when email is not null (empty, by default ""), email is to be handled. */}
-
-          <form className="input" onSubmit={handleRegister}>
-                <input className="field"
-                type="email"
-                value={email}
-                placeholder="Email Address"
-                // ref={emailRef}
-                onChange={(e) => setEmail(e.target.value)} />
-
-                <input className="field"
-                type="username"
-                value={username}
-                placeholder="Username"
-                // ref={usernameRef}
-                onChange={(e) => setUsername(e.target.value)} />
-            
-               <input className="field"
-               type="password"
-               value={password}
-               placeholder="Password"
-              //  ref={passwordRef}
-               onChange={(e) => setPassword(e.target.value)} />
-               
-               {/* <button className="registerButton" onClick={console.log(`${email}, ${password}`)}>Start</button> */}
-               <input className="registerButton" type="submit" value="Submit"></input>
-
-          
-          </form>
-
-        {/* {!email ? (
+        <p>
+          Ready to watch? Enter your email to create or restart your membership.
+        </p>
+        {!email ? (
           <div className="input">
-          
-            <input type="email"
-            // value={email}
-            placeholder="Email Address"
-            ref={emailRef} />
-
-            <input
-            type="username"
-            // value={username}
-            placeholder="Username"
-            ref={usernameRef} />
-          
-            <button className="registerButton" onClick={handleEmail}>
+            <input type="email" placeholder="email address" ref={emailRef} />
+            <button className="registerButton" onClick={handleStart}>
               Get Started
             </button>
-          
           </div>
         ) : (
           <form className="input">
-            
-               <input type="password" placeholder="Password" ref={passwordRef} />
-               
-               <button className="registerButton" onClick={handlePassword}>Start</button>
-          
+            <input type="username" placeholder="username" ref={usernameRef} />
+            <input type="password" placeholder="password" ref={passwordRef} />
+            <button className="registerButton" onClick={handleFinish}>
+              Start
+            </button>
           </form>
-        )} */}
-
-        {/* <Link to="/login" >
-            <button className="loginButton">Sign In</button>
-        </Link> */}
+        )}
       </div>
     </div>
   );

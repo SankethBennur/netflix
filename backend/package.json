@@ -1,21 +1,28 @@
 {
-  "name": "backend",
+  "name": "api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js",
+    "deploy": "firebase deploy --only functions"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.0.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "firebase": "^10.6.0",
+    "firebase-admin": "^11.11.0",
+    "firebase-functions": "^4.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.2"
+    "mongoose": "^5.13.2",
+    "nodemon": "^2.0.9"
   }
 }
